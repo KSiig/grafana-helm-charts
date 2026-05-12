@@ -1,5 +1,5 @@
 {{- if .Values.lokiCanary.enabled -}}
-{{- $component := set .Values.lokiCanary "extraEnv" (concat (list (dict "name" "POD_NAME" "valueFrom" (dict "fieldRef" (dict "fieldPath" "metadata.name"))))) }}
+{{- $component := set .Values.lokiCanary "extraEnv" (concat .Values.lokiCanary.extraEnv (list (dict "name" "POD_NAME" "valueFrom" (dict "fieldRef" (dict "fieldPath" "metadata.name"))))) }}
 ---
 apiVersion: apps/v1
 kind: {{ .Values.lokiCanary.kind }}
